@@ -20,40 +20,51 @@ namespace Tree
 
         private void AddElement(Element _current, int value)
         {
-            var newElement = new Element
-            {
-                Right = null,
-                Left = null,
-                Counter = 0,
-                Value = value
-            };
             if (_current.Value < value)
             {
                 if (_current.Right == null)
                 {
-                    
+                    var newElement = new Element
+                    {
+                        Right = null,
+                        Left = null,
+                        Counter = 0,
+                        Value = value
+                    };
                     _current.Right = newElement;
+                }
+                else
+                { 
+                    _current = _current.Right;
+                    AddElement(_current,value);
                     return;
                 }
-                _current = _current.Right;
-                AddElement(_current,value);
             }
             if (_current.Value > value)
             {
                 if (_current.Left == null)
                 {
+                    var newElement = new Element
+                    {
+                        Right = null,
+                        Left = null,
+                        Counter = 0,
+                        Value = value
+                    };
                     _current.Left = newElement;
-                    return;
                 }
-                _current = _current.Left;
-                AddElement(_current, value);
+                else
+                {
+                    _current = _current.Left;
+                    AddElement(_current, value);
+
+                }
+                
             }
             if (_current.Value == value && Count != 0)
             {
                 _current.Counter++;
-                return;
             }
-            Count++;
         }
         public void AddElement(int value)
         {
@@ -74,6 +85,7 @@ namespace Tree
                 _current = _first;
                 AddElement(_current, value); 
             }
+            Count++;
         }
 
         private bool Search(int value, Element _current, out int counter)

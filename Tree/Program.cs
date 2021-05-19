@@ -20,7 +20,7 @@ namespace Tree
 
             foreach (var element in mas)
             {
-                var chel = tree.Search(element, out counter);
+                tree.Search(element, out counter);
                 Console.WriteLine($"Значение: {element}, кол-во повторений {counter}");
             }
             Console.ReadKey();
